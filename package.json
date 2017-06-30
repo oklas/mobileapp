@@ -6,13 +6,20 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
 		"start:ios": "react-native run-ios",
-		"start:android": "react-native run-android"
+		"start:android": "react-native run-android",
+		"tsc": "tsc",
+		"clean": "rimraf artifacts",
+		"build": "yarn run clean && yarn run tsc --",
+		"lint": "tslint src/**/*.ts"
 	},
 	"dependencies": {
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.45.1"
 	},
 	"devDependencies": {
+		"@types/jest": "^20.0.2",
+		"@types/react": "^15.0.33",
+		"@types/react-native": "^0.44.14",
 		"babel-jest": "20.0.3",
 		"babel-preset-react-native": "2.0.0",
 		"concurrently": "^3.5.0",
