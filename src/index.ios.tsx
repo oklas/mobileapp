@@ -13,6 +13,7 @@ import {
   View
 } from 'react-native'
 
+
 export interface Props { }
 export interface State { }
 
