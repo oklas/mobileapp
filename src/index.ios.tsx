@@ -4,15 +4,19 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React from 'react'
+
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View
-} from 'react-native';
+} from 'react-native'
 
-export default class mobileapp extends Component {
+export interface Props { }
+export interface State { }
+
+export default class mobileapp extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
@@ -20,18 +24,18 @@ export default class mobileapp extends Component {
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.android.js
+          To get started, edit index.ios.js
         </Text>
         <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
+          Press Cmd+R to reload,{'\n'}
+          Cmd+D or shake for dev menu
         </Text>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
+const styles:any = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
