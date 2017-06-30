@@ -23,16 +23,14 @@ module.exports = function (wallaby) {
 
         testFramework: 'jest',
 
-        compilers: {
-            '**/*.js': wallaby.compilers.babel({
+        preprocessors: {
+            '**/*.js': file => require('babel-core').transform(file.content, {
+                sourceMap: true, filename: file.path,
                 presets: [
-                    'react-native',
-                    'react-native-stage-0/decorator-support',
+                    'react-native'
                 ],
                 plugins: [
-                    'transform-flow-strip-types',
-                    'transform-object-rest-spread',
-                    'transform-async-to-generator',
+                    'transform-es2015-modules-commonjs',
                 ],
             }),
         },
