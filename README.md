@@ -42,3 +42,19 @@ open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app
 ```
 yarn start:ios
 ```
+
+## tips
+### watchman error 'Error: Error watching file for changes: EMFILE'
+- try 
+```
+rm -rf /usr/local/var/run/watchman
+```
+- make sure watchman is installed with brew only, not with brew _and_ yarn or npm
+```
+yarn global list
+yarn global remove watchman
+rm -rf /usr/local/var/run/watchman
+brew uninstall watchman
+brew install watchman
+ 
+```

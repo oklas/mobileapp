@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"emu:list":"emulator -list-avds",
+		"emu:list": "emulator -list-avds",
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest --coverage",
 		"tsc": "tsc",
@@ -18,7 +18,8 @@
 		"fbjs": "^0.8.12",
 		"react": "16.0.0-alpha.12",
 		"react-dom": "^15.6.1",
-		"react-native": "0.45.1"
+		"react-native": "0.45.1",
+		"web3": "^0.19.1"
 	},
 	"devDependencies": {
 		"@types/jest": "^20.0.2",
