@@ -20,7 +20,7 @@ export default class mobileapp extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to React Native! Awesome! blabla
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
