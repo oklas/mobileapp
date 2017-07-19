@@ -28,6 +28,7 @@
 		"babel-jest": "20.0.3",
 		"babel-preset-react-native": "2.0.0",
 		"concurrently": "^3.5.0",
+		"ethereumjs-testrpc": "^4.0.1",
 		"jest": "^20.0.4",
 		"jest-cli": "^20.0.4",
 		"react-native-mock": "^0.3.1",

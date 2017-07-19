@@ -4,7 +4,10 @@
  * @flow
  */
 
-// var Web3 = require('web3');
+var Web3 = require('web3');
+
+var web3 = new Web3();
+web3.setProvider(new web3.providers.HttpProvider('http://127.0.0.1:8444'));
 
 import React from 'react';
 import {
@@ -19,10 +22,12 @@ export interface State { }
 
 export default class mobileapp extends React.Component<Props, State> {
   render() {
+    // var coinbase = web3.eth.coinbase;
+    // var balance = web3.eth.getBalance(coinbase);
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native! Awesome! blabla
+          Welcome to React Native! Awesome!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
