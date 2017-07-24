@@ -1,64 +1,67 @@
 {
-	"name": "mobileapp",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"emu:list": "emulator -list-avds",
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest --coverage",
-		"tsc": "tsc",
-		"clean": "rimraf artifacts",
-		"build": "yarn run clean && yarn run tsc --",
-		"lint": "tslint src/**/*.ts",
-		"watch": "npm run build -- -w",
-		"start:ios": "npm run build && concurrently -r 'npm run watch' 'react-native run-ios'",
-		"start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'"
-	},
-	"dependencies": {
-		"fbjs": "^0.8.12",
-		"react": "16.0.0-alpha.12",
-		"react-dom": "^15.6.1",
-		"react-native": "0.45.1",
-		"web3": "^0.19.1"
-	},
-	"devDependencies": {
-		"@types/jest": "^20.0.2",
-		"@types/react": "^15.0.33",
-		"@types/react-native": "^0.44.14",
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "2.0.0",
-		"concurrently": "^3.5.0",
-		"ethereumjs-testrpc": "^4.0.1",
-		"jest": "^20.0.4",
-		"jest-cli": "^20.0.4",
-		"react-native-mock": "^0.3.1",
-		"react-test-renderer": "16.0.0-alpha.12",
-		"rimraf": "^2.6.1",
-		"ts-jest": "^20.0.7",
-		"tslint": "^5.4.3",
-		"typescript": "^2.4.1"
-	},
-	"jest": {
-		"preset": "react-native",
-		"testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
-		"coverageDirectory": "coverage",
-		"coverageReporters": [
-			"text-summary",
-			"html"
-		],
-		"collectCoverageFrom": [
-			"artifacts/**/*.js",
-			"!artifacts/**/*.spec.js",
-			"!artifacts/**/*.index.js"
-		],
-		"transform": {
-			"^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-			".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-		},
-		"moduleFileExtensions": [
-			"ts",
-			"tsx",
-			"js"
-		]
-	}
+  "name": "mobileapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "emu:list": "emulator -list-avds",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest --coverage",
+    "tsc": "tsc",
+    "clean": "rimraf artifacts",
+    "build": "yarn run clean && yarn run tsc --",
+    "lint": "tslint src/**/*.ts",
+    "watch": "npm run build -- -w",
+    "start:run:ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "start:run:android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "start:ios": "npm run build && npm-run-all -p watch start:run:ios",
+    "start:android": "npm run build && npm-run-all -p watch start:run:android"
+  },
+  "dependencies": {
+    "fbjs": "^0.8.12",
+    "react": "16.0.0-alpha.12",
+    "react-dom": "^15.6.1",
+    "react-native": "0.46",
+    "web3": "^0.19.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^20.0.2",
+    "@types/react": "^15.0.33",
+    "@types/react-native": "^0.44.14",
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.0.0",
+    "concurrently": "^3.5.0",
+    "ethereumjs-testrpc": "^4.0.1",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "npm-run-all": "^4.0.2",
+    "react-native-mock": "^0.3.1",
+    "react-test-renderer": "16.0.0-alpha.12",
+    "rimraf": "^2.6.1",
+    "ts-jest": "^20.0.7",
+    "tslint": "^5.4.3",
+    "typescript": "^2.4.1"
+  },
+  "jest": {
+    "preset": "react-native",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text-summary",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "artifacts/**/*.js",
+      "!artifacts/**/*.spec.js",
+      "!artifacts/**/*.index.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
 }
