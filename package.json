@@ -18,9 +18,9 @@
   },
   "dependencies": {
     "fbjs": "^0.8.12",
-    "react": "16.0.0-alpha.12",
+    "react": "16.0.0-alpha.6",
     "react-dom": "^15.6.1",
-    "react-native": "0.46",
+    "react-native": "0.44",
     "web3": "^0.19.1"
   },
   "devDependencies": {
@@ -35,7 +35,7 @@
     "jest-cli": "^20.0.4",
     "npm-run-all": "^4.0.2",
     "react-native-mock": "^0.3.1",
-    "react-test-renderer": "16.0.0-alpha.12",
+    "react-test-renderer": "16.0.0-alpha.6",
     "rimraf": "^2.6.1",
     "ts-jest": "^20.0.7",
     "tslint": "^5.4.3",
