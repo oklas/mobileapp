@@ -13,6 +13,9 @@ import {
   View
 } from 'react-native';
 
+import check from './FacadeWebRTC'
+
+
 export interface Props { }
 export interface State { }
 
@@ -23,7 +26,7 @@ export default class mobileapp extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native! Awesome!
+          Welcome to React Native! {check()}
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
