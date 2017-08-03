@@ -5,8 +5,6 @@ import {
   View
 } from 'react-native';
 
-import check from './FacadeWebRTC'
-
 
 export interface Props { }
 export interface State { }
@@ -16,7 +14,7 @@ export default class Dashboard extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!!! {check()}
+          Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
