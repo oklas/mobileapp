@@ -16,6 +16,7 @@ export type WrtcDataConnectionOptions = {
 
 export interface Props {
   wrtcDataParams ?: WrtcDataConnectionOptions
+  logger ?: (msg: string) => void
 }
 
 export interface State {
@@ -51,7 +52,7 @@ export default class Chat extends React.Component<Props, State> {
 
     this.newMessageId = 1
 
-    this.logger = (msg: string) => {
+    this.logger = props.logger ? props.logger : (msg: string) => {
       this.appendMessage(false, msg)
     }
 
@@ -61,7 +62,7 @@ export default class Chat extends React.Component<Props, State> {
       roomName: wdp.roomName || 'chatRoom',
       signallingServer: wdp.signallingServer || 'http://192.168.0.5:3000',
       rtcOpts: wdp.rtcOpts || {iceServers: [{urls: 'stun:stun.l.google.com:19301'}]},
-      debugMode: wdp.debugMode || true,
+      debugMode: wdp.debugMode || false,
       debugLogger: wdp.debugLogger || this.logger,
     }
   }
@@ -80,16 +81,15 @@ export default class Chat extends React.Component<Props, State> {
   }
 
   onSend = (messages = []) => {
-    this.setState((previousState) => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }))
-//    if(this.state.ready) {
+    if(this.state.ready) {
+      this.setState((previousState) => ({
+        messages: GiftedChat.append(previousState.messages, messages),
+      }))
       messages.forEach(item => this.connection.sendMessage(item.text))
-//    }
+    }
   }
 
   componentDidMount() {
-
     this.connection = new Connection(this.wrtcDataParams)
 
     this.connection.on('ready', () => {
@@ -102,8 +102,6 @@ export default class Chat extends React.Component<Props, State> {
         this.appendMessage(false, data.text)
       })
     })
-
-    this.appendMessage(true, 'Start conversation')
   }
 
   render() {

@@ -21,7 +21,9 @@ export default class mobileapp extends React.Component<Props, State> {
     // var coinbase = web3.eth.coinbase;
     // var balance = web3.eth.getBalance(coinbase);
     return (
-      <Chat/>
+      <Chat wrtcDataParams={{
+        signallingServer:'http://192.168.0.242:3000'
+      }} />
     );
   }
 }
