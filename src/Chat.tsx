@@ -27,8 +27,7 @@ export interface State {
 export default class Chat extends React.Component<Props, State> {
   state: State
   connection: Connection
-  localUser: Object
-  remoteUser: Object
+  users: Object
   newMessageId: number
   wrtcDataParams: WrtcDataConnectionOptions
   logger: (msg: string) => void
@@ -40,40 +39,52 @@ export default class Chat extends React.Component<Props, State> {
       ready: false
     }
 
-    this.localUser = {
-      _id: 1,
-      name: 'Local User',
-    }
-
-    this.remoteUser = {
-      _id: 2,
-      name: 'Remote and Debug',
+    this.users = {
+      'local': {
+        _id: 'local',
+        name: 'Local User',
+      },
+      'system': {
+        _id: 'system',
+        name: '',
+      }
     }
 
     this.newMessageId = 1
 
     this.logger = props.logger ? props.logger : (msg: string) => {
-      this.appendMessage(false, msg)
+      this.appendMessage('system', msg)
     }
 
     let wdp: WrtcDataConnectionOptions = props.wrtcDataParams || {}
 
     this.wrtcDataParams = {
       roomName: wdp.roomName || 'chatRoom',
-      signallingServer: wdp.signallingServer || 'http://192.168.0.5:3000',
+      signallingServer: wdp.signallingServer || 'http://192.168.0.242:3000',
       rtcOpts: wdp.rtcOpts || {iceServers: [{urls: 'stun:stun.l.google.com:19301'}]},
       debugMode: wdp.debugMode || false,
       debugLogger: wdp.debugLogger || this.logger,
     }
   }
 
-  appendMessage = (local: boolean, message: string) => {
-    const {remoteUser, localUser} = this
+  findUser = (userId) => {
+    let user = this.users[userId]
+    if( !user ) {
+      user = {
+        _id: userId,
+        name: userId,
+      }
+      this.users[userId] = user
+    }
+    return user
+  }
+
+  appendMessage = (userId: string, message: string) => {
     const messages = [{
       _id: this.newMessageId++,
       text: message,
       createdAt: new Date(),
-      user: local ? localUser : remoteUser,
+      user: this.findUser(userId),
     }]
     this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages),
@@ -93,13 +104,13 @@ export default class Chat extends React.Component<Props, State> {
     this.connection = new Connection(this.wrtcDataParams)
 
     this.connection.on('ready', () => {
-      this.logger('ready')
+      this.logger('connected to the server')
       this.connection.on('channel:ready', () => {
-        this.logger('channel:ready')
+        this.logger('new peer connected')
         this.setState({ready: true})
       })
       this.connection.on('message', (data) => {
-        this.appendMessage(false, data.text)
+        this.appendMessage(data.sender, data.text)
       })
     })
   }
@@ -109,7 +120,7 @@ export default class Chat extends React.Component<Props, State> {
       <GiftedChat
         messages={this.state.messages}
         onSend={this.onSend}
-        user={this.localUser}
+        user={this.findUser('local')}
       />
     )
   }
