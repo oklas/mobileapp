@@ -6,17 +6,19 @@ exports[`renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
     >
-      Local User
+      
     </Text>
     <View>
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
       >
-        Start conversation
+        debug enabled
       </Text>
     </View>
   </View>
@@ -24,17 +26,19 @@ exports[`renders correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
     >
-      Remote and Debug
+      User
     </Text>
     <View>
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
       >
-        debug enabled
+        test message
       </Text>
     </View>
   </View>

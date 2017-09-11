@@ -17,9 +17,22 @@ jest.mock('react-native-gifted-chat', () => {
 // https://github.com/airbnb/enzyme/issues/614
 
 it('renders correctly', () => {
+  const messages = [{
+    text: 'test message',
+    createdAt: new Date(),
+    user: {
+      _id: 'user',
+      name: 'User',
+    }
+  }]
+
   const tree = renderer.create(
-    <Chat />
+    <Chat
+      wrtcDataParams={{debugMode: true}}
+      messages={messages}
+    />
   ).toJSON();
+
   expect(tree).toMatchSnapshot();
   expect(tree).toBeDefined();
 });

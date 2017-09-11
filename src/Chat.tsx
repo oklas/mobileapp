@@ -3,6 +3,15 @@ import React from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 import Connection from 'wrtc-simple-data-native';
 
+/*
+  <Chat
+    wrtcDataParams={{
+      ...config // onfigure `wrtc-simple-data` connection
+    }}
+    logger={(msg: string) => console.log(msg)}
+    messages=[] // initial messages if any
+  />
+*/
 
 export type WrtcDataConnectionOptions = {
   signallingServer ?: string
@@ -16,6 +25,7 @@ export type WrtcDataConnectionOptions = {
 
 export interface Props {
   wrtcDataParams ?: WrtcDataConnectionOptions
+  messages ?: Object[]
   logger ?: (msg: string) => void
 }
 
@@ -35,7 +45,7 @@ export default class Chat extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = {
-      messages: [],
+      messages: props.messages || [],
       ready: false
     }
 
@@ -60,7 +70,7 @@ export default class Chat extends React.Component<Props, State> {
 
     this.wrtcDataParams = {
       roomName: wdp.roomName || 'chatRoom',
-      signallingServer: wdp.signallingServer || 'http://192.168.0.242:3000',
+      signallingServer: wdp.signallingServer || 'http://localhost:3000',
       rtcOpts: wdp.rtcOpts || {iceServers: [{urls: 'stun:stun.l.google.com:19301'}]},
       debugMode: wdp.debugMode || false,
       debugLogger: wdp.debugLogger || this.logger,
